@@ -4,9 +4,9 @@ Tell the reader (someone who does not know anything about this project)
 all he/she needs to know. The comments should usually include at least:
 ------------------------------------------------------------------------
 
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
+PROJECT TITLE: Mars Rovers
+PURPOSE OF PROJECT: Object Orriented Code
+VERSION or DATE: 9/21/17
 HOW TO START THIS PROJECT:
-AUTHORS:
+AUTHORS: Sean Donlin
 USER INSTRUCTIONS:

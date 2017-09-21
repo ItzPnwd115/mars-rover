@@ -2,8 +2,8 @@
 /**
  * Write a description of class Rover here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sean Donlin 
+ * @version 9/21/17
  */
 public class Rover
 {
