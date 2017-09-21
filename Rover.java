@@ -8,10 +8,10 @@
 public class Rover
 {
     // fields
-    String name;
-    int x;
-    int y;
-    int dir; // 0=North, 1=East, 2=South, 3=West
+    private String name;
+    private int x;
+    private int y;
+    private int dir; // 0=North, 1=East, 2=South, 3=West
     
     
     // constructor(s)
