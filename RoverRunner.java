@@ -14,35 +14,21 @@ public class RoverRunner
         Rover r3 = new Rover("Lil-Boat");
         
         System.out.println(r1);
-        
+        r1.move();
+        r1.rotateRight();             
         r1.move();
         System.out.println(r1);
-
-        r1.rotateRight();
-        System.out.println(r1);
         
-        r2.rotateLeft();
         System.out.println(r2);
-        
+        r2.rotateRight();
+        r2.move();        
+        r2.move();        
+        r2.move();       
+        r2.move();        
+        r2.move();       
+        r2.rotateRight();       
+        r2.move();        
         r2.move();
         System.out.println(r2);
-        
-        r1.move();
-        System.out.println(r1);
-        
-        r3.move();
-        System.out.println(r3);
-        
-        r3.rotateRight();
-        System.out.println(r3);
-        
-        r3.move();
-        System.out.println(r3);
-        
-        r3.rotateLeft();
-        System.out.println(r3);
-        
-        r3.move();
-        System.out.println(r3);
     }
 }
