@@ -27,6 +27,7 @@ public class RoverRunner
         r2.takePic();
         r2.move(2);
         r2.takePic();
+        r2.killRover(r1);
         System.out.println(r2);
         
         System.out.println(r3);

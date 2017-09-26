@@ -13,6 +13,7 @@ public class Rover
     private int y;
     private int dir; // 0=North, 0.5=NE, 1=East, 1.5=SE, 2=South, 2.5=SW, 3=West, 3.5=NW
     private int numPics;
+    private boolean isAlive;
     
     
     // constructor(s)
@@ -23,6 +24,7 @@ public class Rover
         this.y = 0;
         this.dir = 0;
         this.numPics = 0;
+        this.isAlive= false;
     }
     
     
@@ -106,8 +108,9 @@ public class Rover
         return "Rover[name=" + name + ", x=" + x + ", y=" + y + ", dir=" + dir + " Pictures: "+ numPics +"]";
     }
     
-    public void killRover()
+    public void killRover(Rover other)
     {
-        
+        System.out.println(this.name + " OOOF'ed " + other.name + ".");
+        other.isAlive = false;
     }
 }
