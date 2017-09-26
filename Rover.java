@@ -11,7 +11,7 @@ public class Rover
     private String name;
     private int x;
     private int y;
-    private int dir; // 0=North, 1=East, 2=South, 3=West
+    private int dir; // 0=North, 0.5=NE, 1=East, 1.5=SE, 2=South, 2.5=SW, 3=West, 3.5=NW
     private int numPics;
     
     
@@ -34,7 +34,19 @@ public class Rover
     
     public void takePic()
     {
-        System.out.println(name + " took a picture at [" + x +"," + y + "] facing " + dir);
+        if (dir == 0){
+            System.out.println(name + " took a picture at [" + x +"," + y + "] facing North");
+        }
+        else if(dir == 1){
+            System.out.println(name + " took a picture at [" + x +"," + y + "] facing East");
+        }
+        else if(dir == 2){
+            System.out.println(name + " took a picture at [" + x +"," + y + "] facing South");
+        }
+        else{
+            System.out.println(name + " took a picture at [" + x +"," + y + "] facing West");
+        }
+        this.numPics += 1;
     }
     
     public void move(int n)
@@ -91,6 +103,11 @@ public class Rover
 
     public String toString() 
     {
-        return "Rover[name=" + name + ", x=" + x + ", y=" + y + ", dir=" + dir + "]";
+        return "Rover[name=" + name + ", x=" + x + ", y=" + y + ", dir=" + dir + " Pictures: "+ numPics +"]";
+    }
+    
+    public void killRover()
+    {
+        
     }
 }
