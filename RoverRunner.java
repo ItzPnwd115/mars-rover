@@ -18,6 +18,7 @@ public class RoverRunner
         r1.rotateRight();             
         r1.move(1);
         r1.setName("Sojourner");
+        r3.teleport(5,9);
         System.out.println(r1);
         
         System.out.println(r2);
@@ -28,14 +29,16 @@ public class RoverRunner
         r2.move(2);
         r2.takePic();
         r2.killRover(r1);
+        r2.takePic();
+        r2.transmitPictures();
         System.out.println(r2);
         
         System.out.println(r3);
         r3.move(2);
         r3.rotateLeft();
         r3.move(1);
+        r3.transmitPictures();
         System.out.print(r3);
-        
-        
+                
     }
 }

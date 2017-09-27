@@ -11,7 +11,7 @@ public class Rover
     private String name;
     private int x;
     private int y;
-    private int dir; // 0=North, 0.5=NE, 1=East, 1.5=SE, 2=South, 2.5=SW, 3=West, 3.5=NW
+    private int dir; // 0=North, 1=East, 2=South,3=West
     private int numPics;
     private boolean isAlive;
     
@@ -51,6 +51,18 @@ public class Rover
         this.numPics += 1;
     }
     
+    public void transmitPictures()
+    {
+       if(numPics >= 1){
+           System.out.println("Sending " + numPics + " pictures to NASA HQ ......");
+           System.out.println("Recieved");
+           this.numPics = 0;
+        }
+       else{
+           System.out.println("No pictures to transmit.");
+       }
+    }
+    
     public void move(int n)
     {
         if (dir == 0)
@@ -78,7 +90,15 @@ public class Rover
             System.out.println(name + " moved in direction " + dir + " by " + n + " units.");
         }
     }
-        
+    
+    public void teleport(int xz, int yz)
+    {
+        System.out.println("Teleporting from [" + this.x + "," + this.y + "] to [" + xz + "," + yz + "]");
+        x = xz;
+        y = yz;
+        System.out.println("Arrived at (" + xz + "," + yz + ")");
+    }
+    
     public void rotateLeft() 
     {
         dir -= 1;
