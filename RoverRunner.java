@@ -18,7 +18,7 @@ public class RoverRunner
         r1.rotateRight();             
         r1.move(1);
         r1.setName("Sojourner");
-        r3.teleport(5,9);
+        r1.teleport(5,9);
         System.out.println(r1);
         
         System.out.println(r2);

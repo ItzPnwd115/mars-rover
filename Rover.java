@@ -91,12 +91,12 @@ public class Rover
         }
     }
     
-    public void teleport(int xz, int yz)
+    public void teleport(int x, int y)
     {
-        System.out.println("Teleporting from [" + this.x + "," + this.y + "] to [" + xz + "," + yz + "]");
-        x = xz;
-        y = yz;
-        System.out.println("Arrived at (" + xz + "," + yz + ")");
+        System.out.println("Teleporting from [" + this.x + "," + this.y + "] to [" + x + "," + y + "]");
+        this.x = x;
+        this.y = y;        
+        System.out.println("Arrived at (" + x + "," + y + ")");
     }
     
     public void rotateLeft() 
