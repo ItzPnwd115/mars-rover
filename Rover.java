@@ -14,6 +14,7 @@ public class Rover
     private int dir; // 0=North, 1=East, 2=South,3=West
     private int numPics;
     private boolean isAlive;
+    private int energy;
     
     //Can I seperate functions like movement and Rover functions into two different classes?
     
@@ -26,6 +27,7 @@ public class Rover
         this.dir = 0;
         this.numPics = 0;
         this.isAlive= false;
+        this.energy = 100;
     }
     
     
@@ -33,6 +35,7 @@ public class Rover
     public void setName(String name)
     {
         this.name = name;
+        this.energy -= 1;
     }
     
     public void takePic()
@@ -56,6 +59,7 @@ public class Rover
                 System.out.println(name + " took a picture at [" + x +"," + y + "] facing West");
             }
         }
+        this.energy -= 8;
     }
     
     public void transmitPictures()
@@ -68,6 +72,19 @@ public class Rover
        else{
            System.out.println("No pictures to transmit.");
        }
+       this.energy -= 5;
+    }
+    
+    public void energyCheck()
+    {
+       System.out.println("Energy: " + energy);
+    }
+    
+    public void chargeRover()
+    {
+        System.out.println("Rover beginning to Charge!");
+        this.energy = 100;
+        System.out.println("CHARGED!");
     }
     
     /*
@@ -91,7 +108,7 @@ public class Rover
         {
             x -= n;
         }
-        
+        this.energy -= (2*n);
         if(n == 1)
         {
             System.out.println(name + " moved in direction " + dir + " by " + n + " unit.");
@@ -109,7 +126,7 @@ public class Rover
         {
             dir = 3;
         }
-        
+        this.energy -= 2;
         System.out.println(name + " turned to the left");        
     }
     
@@ -121,7 +138,7 @@ public class Rover
         {
             dir = 0;
         }
-        
+        this.energy -= 2;
         System.out.println(name + " turned to the right");        
     }
     
@@ -141,6 +158,7 @@ public class Rover
         this.x = x;
         this.y = y;        
         System.out.println("Arrived at (" + x + "," + y + ")");
+        this.energy -= 25;
     }
     
     public String toString() 

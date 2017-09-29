@@ -38,6 +38,7 @@ public class RoverRunner
         r2.takePic();
         r2.transmitPictures();
         r2.takePic();
+        r2.energyCheck();
         System.out.println(r2);
         
         System.out.println(r3);
