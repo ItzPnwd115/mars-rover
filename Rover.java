@@ -15,6 +15,7 @@ public class Rover
     private int numPics;
     private boolean isAlive;
     
+    //Can I seperate functions like movement and Rover functions into two different classes?
     
     // constructor(s)
     public Rover(String name)
@@ -36,19 +37,25 @@ public class Rover
     
     public void takePic()
     {
-        if (dir == 0){
-            System.out.println(name + " took a picture at [" + x +"," + y + "] facing North");
-        }
-        else if(dir == 1){
-            System.out.println(name + " took a picture at [" + x +"," + y + "] facing East");
-        }
-        else if(dir == 2){
-            System.out.println(name + " took a picture at [" + x +"," + y + "] facing South");
+        this.numPics += 1;
+        if (numPics >= 5){
+            this.numPics -= 1;
+            System.out.println("Memory full, needs to back up to NASA before taking more!");
         }
         else{
-            System.out.println(name + " took a picture at [" + x +"," + y + "] facing West");
+            if (dir == 0){
+                System.out.println(name + " took a picture at [" + x +"," + y + "] facing North");
+            }
+            else if(dir == 1){
+                System.out.println(name + " took a picture at [" + x +"," + y + "] facing East");
+            }
+            else if(dir == 2){
+                System.out.println(name + " took a picture at [" + x +"," + y + "] facing South");
+            }
+            else{
+                System.out.println(name + " took a picture at [" + x +"," + y + "] facing West");
+            }
         }
-        this.numPics += 1;
     }
     
     public void transmitPictures()
@@ -63,6 +70,9 @@ public class Rover
        }
     }
     
+    /*
+     * Is it possible to simpify this function so that it's not reliant on directional and move able by negative and positive n.
+     */
     public void move(int n)
     {
         if (dir == 0)
@@ -91,14 +101,6 @@ public class Rover
         }
     }
     
-    public void teleport(int x, int y)
-    {
-        System.out.println("Teleporting from [" + this.x + "," + this.y + "] to [" + x + "," + y + "]");
-        this.x = x;
-        this.y = y;        
-        System.out.println("Arrived at (" + x + "," + y + ")");
-    }
-    
     public void rotateLeft() 
     {
         dir -= 1;
@@ -122,7 +124,25 @@ public class Rover
         
         System.out.println(name + " turned to the right");        
     }
-
+    
+    public void moveTo(int x, int y)
+    {
+        
+    }
+    
+    public void goHome()
+    {
+        
+    }
+    
+    public void teleport(int x, int y)
+    {
+        System.out.println("Teleporting from [" + this.x + "," + this.y + "] to [" + x + "," + y + "]");
+        this.x = x;
+        this.y = y;        
+        System.out.println("Arrived at (" + x + "," + y + ")");
+    }
+    
     public String toString() 
     {
         return "Rover[name=" + name + ", x=" + x + ", y=" + y + ", dir=" + dir + " Pictures: "+ numPics +"]";
