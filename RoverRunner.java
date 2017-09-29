@@ -30,7 +30,14 @@ public class RoverRunner
         r2.takePic();
         r2.killRover(r1);
         r2.takePic();
+        r2.rotateLeft();
+        r2.takePic();
+        r2.teleport(9,3);
+        r2.takePic();
+        r2.rotateLeft();
+        r2.takePic();
         r2.transmitPictures();
+        r2.takePic();
         System.out.println(r2);
         
         System.out.println(r3);
