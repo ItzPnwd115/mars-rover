@@ -12,29 +12,30 @@ public class RoverRunner
         Rover r1 = new Rover("Curiosity");
         Rover r2 = new Rover("Spirit");
         Rover r3 = new Rover("Lil-Boat");
+        Rover r4 = new Rover("4th Reich");
         
         System.out.println(r1);
         r1.move(1);
-        r1.rotateRight();             
+        r1.rotateRight(6);             
         r1.move(1);
         r1.setName("Sojourner");
         r1.teleport(5,9);
         System.out.println(r1);
         
         System.out.println(r2);
-        r2.rotateRight();
+        r2.rotateRight(1);
         r2.move(5);        
-        r2.rotateRight();  
+        r2.rotateRight(2);  
         r2.takePic();
         r2.move(2);
         r2.takePic();
         r2.killRover(r1);
         r2.takePic();
-        r2.rotateLeft();
+        r2.rotateLeft(3);
         r2.takePic();
         r2.teleport(9,3);
         r2.takePic();
-        r2.rotateLeft();
+        r2.rotateLeft(3);
         r2.takePic();
         r2.transmitPictures();
         r2.takePic();
@@ -43,10 +44,10 @@ public class RoverRunner
         
         System.out.println(r3);
         r3.move(2);
-        r3.rotateLeft();
+        r3.rotateLeft(2);
         r3.move(1);
         r3.transmitPictures();
         System.out.print(r3);
-                
+        
     }
 }

@@ -16,7 +16,6 @@ public class Rover
     private boolean isAlive;
     private int energy;
     
-    //Can I seperate functions like movement and Rover functions into two different classes?
     
     // constructor(s)
     public Rover(String name)
@@ -87,9 +86,7 @@ public class Rover
         System.out.println("CHARGED!");
     }
     
-    /*
-     * Is it possible to simpify this function so that it's not reliant on directional and move able by negative and positive n.
-     */
+
     public void move(int n)
     {
         if (dir == 0)
@@ -118,33 +115,51 @@ public class Rover
         }
     }
     
-    public void rotateLeft() 
+    public void rotateLeft(int n) 
     {
-        dir -= 1;
+        dir -= n;
         
         if (dir < 0)
         {
-            dir = 3;
+            dir = Math.abs(n % 4);
         }
-        this.energy -= 2;
+        this.energy -= 2*n;
         System.out.println(name + " turned to the left");        
     }
     
-    public void rotateRight()
+    public void rotateRight(int n)
     {
-        dir += 1;
+        dir += n;
         
-        if (dir == 4)
+        if (dir >= 4)
         {
-            dir = 0;
+            dir = n % 4;
         }
-        this.energy -= 2;
+        this.energy -= 2*n;
         System.out.println(name + " turned to the right");        
     }
     
     public void moveTo(int x, int y)
     {
-        
+        System.out.println(name + "Moving to: " + x + y);
+        move(x);
+        if(x < 0 && y < 0){
+            rotateLeft(1);
+        }
+        else if(x > 0 && y > 0){
+            rotateLeft(1);
+        }
+        else if(x > 0 && y < 0){
+            rotateRight(1);
+        }
+        else if (x < 0 && y > 0){
+            rotateRight(1);
+        }
+        else{
+            System.out.println("OOOOOFFFFFFFF!!!");
+        }
+        move(y);
+        System.out.println("Arrived at (" + x + "," + y + ")");
     }
     
     public void goHome()
