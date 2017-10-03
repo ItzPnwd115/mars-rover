@@ -29,7 +29,10 @@ public class Rover
         this.energy = 100;
     }
     
-    
+        private void oof() {
+        isAlive = false;
+        System.out.println(name + " goes 'OOOOF!' and dies.");
+    }
     // methods - stuff the Rover can do
     public void setName(String name)
     {
@@ -183,7 +186,7 @@ public class Rover
     
     public void killRover(Rover other)
     {
-        System.out.println(this.name + " OOOF'ed " + other.name + ".");
-        other.isAlive = false;
+        System.out.println(this.name + " kills " + other.name + " with a bagette.");
+        other.oof();
     }
 }
