@@ -9,45 +9,95 @@ public class RoverRunner
 {
     public static void main(String[] arrrggggggs)
     {
+        //Make a SipmleScanner
+        SimpleScanner input = new SimpleScanner();
+        
+        //Rovers
         Rover r1 = new Rover("Curiosity");
         Rover r2 = new Rover("Spirit");
         Rover r3 = new Rover("Lil-Boat");
         Rover r4 = new Rover("4th Reich");
         
-        System.out.println(r1);
-        r1.move(1);
-        r1.rotateRight(6);             
-        r1.move(1);
-        r1.setName("Sojourner");
-        r1.teleport(5,9);
-        System.out.println(r1);
+        //Make a RoverGroup and add Rovers
+        RoverGroup group = new RoverGroup();
+        group.add(r1);
+        group.add(r2);
+        group.add(r3);
+        group.add(r4);
         
-        System.out.println(r2);
-        r2.rotateRight(1);
-        r2.move(5);        
-        r2.rotateRight(2);  
-        r2.takePic();
-        r2.move(2);
-        r2.takePic();
-        r2.killRover(r1);
-        r2.takePic();
-        r2.rotateLeft(3);
-        r2.takePic();
-        r2.teleport(9,3);
-        r2.takePic();
-        r2.rotateLeft(3);
-        r2.takePic();
-        r2.transmitPictures();
-        r2.takePic();
-        r2.energyCheck();
-        System.out.println(r2);
+        //Now let's do stuffs!
+        boolean running = true;
+        String exitCommand = "quit";
         
-        System.out.println(r3);
-        r3.move(2);
-        r3.rotateLeft(2);
-        r3.move(1);
-        r3.transmitPictures();
-        System.out.print(r3);
+        while (running) {
+            //Input name
+            System.out.println("Enter the name of the Rover to act: ");
+            //Lists names of Robots
+            System.out.println("[1] " + r1);
+            System.out.println("[2] " + r2);
+            System.out.println("[3] " + r3);
+            System.out.println("[4] " + r4);
+            String name = input.readString();
+            
+            //Select Rover with matching name
+            Rover actor = group.find(name);
+            
+            if (actor != null) {
+                //If the rover is found
+                System.out.print("Enter a command: ");
+                System.out.println("[1]Move");
+                System.out.println("[2]Rotate Right");
+                System.out.println("[3]Rotate Left");
+                System.out.println("[4]Kill");
+                System.out.println("[5]Quit");
+                String command = input.readString();
+                
+                if (command.equals("move")) {
+                    System.out.print("Enter distance to move: ");
+                    int n = input.readInt();
+                    actor.move(n);
+                }
+                else if (command.equals("rotate right")) {
+                    System.out.print("Enter distance to rotate right: ");
+                    int n = input.readInt();
+                    actor.rotateRight(n);
+                }
+                else if (command.equals("rotate left")) {
+                    System.out.print("Enter distance to rotate left: ");
+                    int n = input.readInt();
+                    actor.rotateRight(n);
+                }
+                else if (command.equals("kill")) {
+                    System.out.print("Enter the name the target rover: ");
+                    String targetName = input.readString();
+                    
+                    Rover target = group.find(targetName);
+                    
+                    if (target != null) {
+                        actor.kill(target);
+                        System.out.println(target);
+                    }
+                    else {
+                        System.out.println("Error: No such target.");
+                    }
+                }
+                else {
+                    System.out.println("Error: Invalid command.");
+                }
+                
+                System.out.println(actor);
+            }
+            else if (name.equals(exitCommand)) {
+                running = false; // set flag to exit loop
+            }
+            else {
+                System.out.println("Error: " + name + " doesn't exist.");
+            }
+            
+            // just a blank line
+            System.out.println();
+        }
         
+        System.out.println("Goodbye.");
     }
 }

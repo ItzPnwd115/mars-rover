@@ -25,7 +25,7 @@ public class Rover
         this.y = 0;
         this.dir = 0;
         this.numPics = 0;
-        this.isAlive= false;
+        this.isAlive= true;
         this.energy = 100;
     }
     
@@ -178,15 +178,23 @@ public class Rover
         System.out.println("Arrived at (" + x + "," + y + ")");
         this.energy -= 25;
     }
-    
-    public String toString() 
-    {
-        return "Rover[name=" + name + ", x=" + x + ", y=" + y + ", dir=" + dir + " Pictures: "+ numPics +"]";
-    }
-    
-    public void killRover(Rover other)
+        
+    public void kill(Rover other)
     {
         System.out.println(this.name + " kills " + other.name + " with a bagette.");
         other.oof();
+    }
+    
+        // accessor methods - just for looking, state doesn't change
+    public String getName() {
+        return name;
+    }
+    
+    public String toString() {
+        return "Rover[name=" + name + ", " +
+               "x=" + x + ", " +
+               "y=" + y + ", " + 
+               "dir=" + dir + ", " + 
+               "isAlive=" + isAlive + "]";
     }
 }
