@@ -44,12 +44,16 @@ public class RoverRunner
             
             if (actor != null) {
                 //If the rover is found
-                System.out.print("Enter a command: ");
+                System.out.println("Enter a command: ");
                 System.out.println("[1]Move");
                 System.out.println("[2]Rotate Right");
                 System.out.println("[3]Rotate Left");
-                System.out.println("[4]Kill");
-                System.out.println("[5]Quit");
+                System.out.println("[4]Take Picture");
+                System.out.println("[5]Transmit Picture");
+                System.out.println("[6]Check Energy");
+                System.out.println("[7]Charge Rover");
+                System.out.println("[8]Kill");
+                System.out.println("[9]Quit");
                 String command = input.readString();
                 
                 if (command.equals("move")) {
@@ -66,6 +70,18 @@ public class RoverRunner
                     System.out.print("Enter distance to rotate left: ");
                     int n = input.readInt();
                     actor.rotateRight(n);
+                }
+                else if (command.equals("take picture")) {
+                    actor.takePic();
+                }
+                else if (command.equals("transmit picture")) {
+                    actor.transmitPictures();
+                }
+                else if (command.equals("check energy")) {
+                    actor.energyCheck();
+                }
+                else if (command.equals("charge rover")) {
+                    actor.chargeRover();
                 }
                 else if (command.equals("kill")) {
                     System.out.print("Enter the name the target rover: ");

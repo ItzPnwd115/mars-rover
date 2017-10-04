@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class Rover here.
  * 
@@ -15,7 +14,6 @@ public class Rover
     private int numPics;
     private boolean isAlive;
     private int energy;
-    
     
     // constructor(s)
     public Rover(String name)
