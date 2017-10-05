@@ -27,11 +27,30 @@ public class Rover
         this.energy = 100;
     }
     
+    // methods - stuff the Rover can do
         private void oof() {
         isAlive = false;
         System.out.println(name + " goes 'OOOOF!' and dies.");
     }
-    // methods - stuff the Rover can do
+
+    private String getDirectionName(){
+        if (dir == 0){
+            return "North";        
+        }
+        else if(dir == 1){
+            return "East";
+        }
+        else if(dir == 2){
+            return "South";
+        }
+        else if(dir == 3){
+            return "West";
+        }
+        else{
+            return null;
+        }
+    }
+    
     public void setName(String name)
     {
         this.name = name;
@@ -46,21 +65,10 @@ public class Rover
             System.out.println("Memory full, needs to back up to NASA before taking more!");
         }
         else{
-            if (dir == 0){
-                System.out.println(name + " took a picture at [" + x +"," + y + "] facing North");
-            }
-            else if(dir == 1){
-                System.out.println(name + " took a picture at [" + x +"," + y + "] facing East");
-            }
-            else if(dir == 2){
-                System.out.println(name + " took a picture at [" + x +"," + y + "] facing South");
-            }
-            else{
-                System.out.println(name + " took a picture at [" + x +"," + y + "] facing West");
-            }
+            System.out.println(name + " took a picture at [" + x +"," + y + "] facing" + getDirectionName() + ".");
         }
         this.energy -= 8;
-    }
+        }   
     
     public void transmitPictures()
     {
@@ -109,10 +117,10 @@ public class Rover
         this.energy -= (2*n);
         if(n == 1)
         {
-            System.out.println(name + " moved in direction " + dir + " by " + n + " unit.");
+            System.out.println(name + " moved " + getDirectionName() + " by " + n + " unit.");
         }
         else{
-            System.out.println(name + " moved in direction " + dir + " by " + n + " units.");
+            System.out.println(name + " moved " + getDirectionName() + " by " + n + " units.");
         }
     }
     
@@ -192,7 +200,7 @@ public class Rover
         return "Rover[name=" + name + ", " +
                "x=" + x + ", " +
                "y=" + y + ", " + 
-               "dir=" + dir + ", " + 
+               "dir=" + getDirectionName() + ", " + 
                "isAlive=" + isAlive + "]";
     }
 }
