@@ -2,7 +2,7 @@
  * Write a description of class Rover here.
  * 
  * @author Sean Donlin 
- * @version 9/21/17
+ * @version 10/6/17
  */
 public class Rover
 {
@@ -28,11 +28,18 @@ public class Rover
     }
     
     // methods - stuff the Rover can do
+    
+    /**
+     * Kills the Rover so it can't be used
+     */
         private void oof() {
         isAlive = false;
         System.out.println(name + " goes 'OOOOF!' and dies.");
     }
-
+    
+    /**
+     * Changes all direction numbers to directions
+     */
     private String getDirectionName(){
         if (dir == 0){
             return "North";        
@@ -51,12 +58,18 @@ public class Rover
         }
     }
     
+    /**
+     * Sets the name of the Rover
+     */
     public void setName(String name)
     {
         this.name = name;
         this.energy -= 1;
     }
     
+    /**
+     * Lets the Rover take a picture
+     */
     public void takePic()
     {
         this.numPics += 1;
@@ -70,6 +83,9 @@ public class Rover
         this.energy -= 8;
         }   
     
+    /**
+     * Transmit pictures to NASA to clear memory and be analyzed
+     */
     public void transmitPictures()
     {
        if(numPics >= 1){
@@ -83,11 +99,17 @@ public class Rover
        this.energy -= 5;
     }
     
+    /**
+     * Returns the energy of the Rover
+     */
     public void energyCheck()
     {
        System.out.println("Energy: " + energy);
     }
     
+    /**
+     * Charges the Rover so it can function again
+     */
     public void chargeRover()
     {
         System.out.println("Rover beginning to Charge!");
@@ -95,7 +117,9 @@ public class Rover
         System.out.println("CHARGED!");
     }
     
-
+    /**
+     * Allows the Rover to move
+     */
     public void move(int n)
     {
         if (dir == 0)
@@ -124,6 +148,9 @@ public class Rover
         }
     }
     
+    /**
+     * Rotates the Rover Left by n units
+     */
     public void rotateLeft(int n) 
     {
         dir -= n;
@@ -136,6 +163,9 @@ public class Rover
         System.out.println(name + " turned to the left");        
     }
     
+    /**
+     * Rotates the Rover right by n units
+     */
     public void rotateRight(int n)
     {
         dir += n;
@@ -148,6 +178,9 @@ public class Rover
         System.out.println(name + " turned to the right");        
     }
     
+    /**
+     * Moves the Rover to a certain set of coodinates
+     */
     public void moveTo(int x, int y)
     {
         System.out.println(name + "Moving to: " + x + y);
@@ -171,11 +204,9 @@ public class Rover
         System.out.println("Arrived at (" + x + "," + y + ")");
     }
     
-    public void goHome()
-    {
-        
-    }
-    
+    /**
+     * Teleports Rover to a certain set of coordinates
+     */
     public void teleport(int x, int y)
     {
         System.out.println("Teleporting from [" + this.x + "," + this.y + "] to [" + x + "," + y + "]");
@@ -184,18 +215,22 @@ public class Rover
         System.out.println("Arrived at (" + x + "," + y + ")");
         this.energy -= 25;
     }
-        
+    
+    /**
+     * One Rover kills another Rover then calls oof method
+     */
     public void kill(Rover other)
     {
         System.out.println(this.name + " kills " + other.name + " with a bagette.");
         other.oof();
     }
     
-        // accessor methods - just for looking, state doesn't change
+    // accessor methods - just for looking, state doesn't change
     public String getName() {
         return name;
     }
     
+    // Prints information about Rover
     public String toString() {
         return "Rover[name=" + name + ", " +
                "x=" + x + ", " +

@@ -53,7 +53,9 @@ public class RoverRunner
                 System.out.println("[6]Check Energy");
                 System.out.println("[7]Charge Rover");
                 System.out.println("[8]Kill");
-                System.out.println("[9]Quit");
+                System.out.println("[9]Teleport");
+                System.out.println("[10]Move to");
+                System.out.println("[11]Quit");
                 String command = input.readString();
                 
                 if (command.equals("move")) {
@@ -96,6 +98,20 @@ public class RoverRunner
                     else {
                         System.out.println("Error: No such target.");
                     }
+                }
+                else if (command.equals("teleport")) {
+                    System.out.print("Enter x Coordinate: ");
+                    int x = input.readInt();
+                    System.out.print("Enter y Coordinate: ");
+                    int y = input.readInt();
+                    actor.teleport(x,y);
+                }
+                else if (command.equals("move to")) {
+                    System.out.print("Enter x Coordinate: ");
+                    int x = input.readInt();
+                    System.out.print("Enter y Coordinate: ");
+                    int y = input.readInt();
+                    actor.moveTo(x,y);
                 }
                 else {
                     System.out.println("Error: Invalid command.");
