@@ -10,7 +10,7 @@ public class Rover
     private String name;
     private int x;
     private int y;
-    private int dir; // 0=North, 1=East, 2=South,3=West
+    private int dir; // 0=North, 1=North-East, 2=East, 3=South-East, 4=South, 5=South-West, 6=West, 7=South-West
     private int numPics;
     private boolean isAlive;
     private int energy;
@@ -45,13 +45,25 @@ public class Rover
             return "North";        
         }
         else if(dir == 1){
-            return "East";
+            return "North-East";
         }
         else if(dir == 2){
-            return "South";
+            return "East";
         }
         else if(dir == 3){
+            return "South-East";
+        }
+        else if(dir == 4){
+            return "South";
+        }
+        else if(dir == 5){
+            return "South-West";
+        }
+        else if(dir == 6){
             return "West";
+        }
+        else if(dir == 7){
+            return "North-West";
         }
         else{
             return null;
@@ -126,16 +138,15 @@ public class Rover
         {
             y += n;
         }
-        else if (dir == 1)
+        else if (dir == 2)
         {
             x += n;
         }
-        else if (dir == 2)
+        else if (dir == 4)
         {
             y -= n;
         }
-        else 
-        {
+        else if(dir == 6){
             x -= n;
         }
         this.energy -= (2*n);
