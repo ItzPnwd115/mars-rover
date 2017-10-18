@@ -46,16 +46,15 @@ public class RoverRunner
                 //If the rover is found
                 System.out.println("Enter a command: ");
                 System.out.println("[1]Move");
-                System.out.println("[2]Rotate Right");
-                System.out.println("[3]Rotate Left");
-                System.out.println("[4]Take Picture");
-                System.out.println("[5]Transmit Picture");
-                System.out.println("[6]Check Energy");
-                System.out.println("[7]Charge Rover");
-                System.out.println("[8]Kill");
-                System.out.println("[9]Teleport");
-                System.out.println("[10]Move to");
-                System.out.println("[11]Quit");
+                System.out.println("[2]Rotate");
+                System.out.println("[3]Take Picture");
+                System.out.println("[4]Transmit Picture");
+                System.out.println("[5]Check Energy");
+                System.out.println("[6]Charge Rover");
+                System.out.println("[7]Kill");
+                System.out.println("[8]Teleport");
+                System.out.println("[9]Move to");
+                System.out.println("[10]Quit");
                 String command = input.readString();
                 
                 if (command.equals("move")) {
@@ -63,15 +62,10 @@ public class RoverRunner
                     int n = input.readInt();
                     actor.move(n);
                 }
-                else if (command.equals("rotate right")) {
-                    System.out.print("Enter distance to rotate right: ");
+                else if (command.equals("rotate")) {
+                    System.out.print("Enter distance to rotate: ");
                     int n = input.readInt();
-                    actor.rotateRight(n);
-                }
-                else if (command.equals("rotate left")) {
-                    System.out.print("Enter distance to rotate left: ");
-                    int n = input.readInt();
-                    actor.rotateRight(n);
+                    actor.rotate(n);
                 }
                 else if (command.equals("take picture")) {
                     actor.takePic();

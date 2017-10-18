@@ -138,15 +138,35 @@ public class Rover
         {
             y += n;
         }
+        else if (dir == 1)
+        {
+            y += n;
+            x += n;
+        }
         else if (dir == 2)
         {
             x += n;
+        }
+        else if (dir == 3)
+        {
+            y -= n;
+            y += n;
         }
         else if (dir == 4)
         {
             y -= n;
         }
+        else if (dir == 5)
+        {
+            y -= n;
+            x -= n;
+        }
         else if(dir == 6){
+            x -= n;
+        }
+        else if (dir == 7)
+        {
+            y += n;            
             x -= n;
         }
         this.energy -= (2*n);
@@ -159,33 +179,46 @@ public class Rover
         }
     }
     
+    public void rotate(int l)
+    {
+        if(l < 0){
+            rotateLeft(l);
+        }
+        else if(l > 0){
+            rotateRight(l);
+        }
+        else{
+            System.out.println("You cant rotate 0 Units RETARD!!");
+        }
+    }
+    
     /**
      * Rotates the Rover Left by n units
      */
-    public void rotateLeft(int n) 
+    private void rotateLeft(int n) 
     {
-        dir -= n;
+        dir += n;
         
         if (dir < 0)
         {
-            dir = Math.abs(n % 4);
+            dir = 8 + n;
         }
-        this.energy -= 2*n;
+        this.energy -= 2;
         System.out.println(name + " turned to the left");        
     }
     
     /**
      * Rotates the Rover right by n units
      */
-    public void rotateRight(int n)
+    private void rotateRight(int n)
     {
         dir += n;
         
-        if (dir >= 4)
+        if (dir > 7)
         {
-            dir = n % 4;
+            dir = (7 + n) % 8;
         }
-        this.energy -= 2*n;
+        this.energy -= 2;
         System.out.println(name + " turned to the right");        
     }
     
