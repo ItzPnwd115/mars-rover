@@ -16,7 +16,7 @@ public class RoverRunner
         Rover r1 = new Rover("Curiosity");
         Rover r2 = new Rover("Spirit");
         Rover r3 = new Rover("Lil-Boat");
-        Rover r4 = new Rover("4th Reich");
+        Rover r4 = new Rover("Tester");
         
         //Make a RoverGroup and add Rovers
         RoverGroup group = new RoverGroup();

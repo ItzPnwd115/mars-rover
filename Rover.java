@@ -15,6 +15,8 @@ public class Rover
     private boolean isAlive;
     private int energy;
     
+    public static final int MAX_CHARGE = 100;
+    
     // constructor(s)
     public Rover(String name)
     {
@@ -84,16 +86,15 @@ public class Rover
      */
     public void takePic()
     {
-        this.numPics += 1;
-        if (numPics >= 5){
-            this.numPics -= 1;
-            System.out.println("Memory full, needs to back up to NASA before taking more!");
+        if (numPics < 5){
+            System.out.println(name + " took a picture at [" + x +"," + y + "] facing" + getDirectionName() + ".");
+            this.numPics += 1;
+            this.energy -= 8;
         }
         else{
-            System.out.println(name + " took a picture at [" + x +"," + y + "] facing" + getDirectionName() + ".");
+            System.out.println("Memory full, needs to back up to NASA before taking more!");
         }
-        this.energy -= 8;
-        }   
+    }   
     
     /**
      * Transmit pictures to NASA to clear memory and be analyzed
@@ -104,11 +105,12 @@ public class Rover
            System.out.println("Sending " + numPics + " pictures to NASA HQ ......");
            System.out.println("Recieved");
            this.numPics = 0;
+           this.energy -= 5;
         }
        else{
            System.out.println("No pictures to transmit.");
+           this.energy -= 1;
        }
-       this.energy -= 5;
     }
     
     /**
@@ -125,7 +127,7 @@ public class Rover
     public void chargeRover()
     {
         System.out.println("Rover beginning to Charge!");
-        this.energy = 100;
+        this.energy = MAX_CHARGE;
         System.out.println("CHARGED!");
     }
     
@@ -179,16 +181,16 @@ public class Rover
         }
     }
     
-    public void rotate(int l)
+    public void rotate(int n)
     {
-        if(l < 0){
-            rotateLeft(l);
+        if(n < 0){
+            rotateLeft(n);
         }
-        else if(l > 0){
-            rotateRight(l);
+        else if(n > 0){
+            rotateRight(n);
         }
         else{
-            System.out.println("You cant rotate 0 Units RETARD!!");
+            System.out.println("You cant rotate 0 Units.");
         }
     }
     
@@ -229,6 +231,7 @@ public class Rover
     {
         System.out.println(name + "Moving to: " + x + y);
         move(x);
+        
         if(x < 0 && y < 0){
             rotateLeft(1);
         }
@@ -244,6 +247,7 @@ public class Rover
         else{
             System.out.println("OOOOOFFFFFFFF!!!");
         }
+        
         move(y);
         System.out.println("Arrived at (" + x + "," + y + ")");
     }
