@@ -1,8 +1,8 @@
 /**
  * Write a description of class SimpleScanner here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jonathan Cooper 
+ * @version Some Day in September 2017
  */
 
 import java.util.Scanner;

@@ -1,8 +1,8 @@
 /**
- * Write a description of class Rover here.
+ * Gives Function for use of Rover Runner class.
  * 
  * @author Sean Donlin 
- * @version 10/6/17
+ * @version 10/22/17
  */
 public class Rover
 {
@@ -14,8 +14,19 @@ public class Rover
     private int numPics;
     private boolean isAlive;
     private int energy;
-    
+        
     public static final int MAX_CHARGE = 100;
+    public static final int LOW_BATTERY = 0;
+    public static final int EMPTY_MEMORY = 0;
+    public static final int MEMORY = 5;
+    public static final int SET_NAME_ENERGY = 1;
+    public static final int TAKE_PICTURE_ENERGY = 8;
+    public static final int TAKE_PICTURE = 1;
+    public static final int TRANSMIT_PIC_ENERGY = 5;
+    public static final int NO_TRANSMIT_PIC_ENERGY = 1;
+    public static final int MOVE_ENERGY = 2;
+    public static final int ROTATE_ENERGY = 2;
+    public static final int TELEPORT_ENERGY = 25;
     
     // constructor(s)
     public Rover(String name)
@@ -41,6 +52,7 @@ public class Rover
     
     /**
      * Changes all direction numbers to directions
+     * @return Directions instead of numbers.
      */
     private String getDirectionName(){
         if (dir == 0){
@@ -78,18 +90,18 @@ public class Rover
     public void setName(String name)
     {
         this.name = name;
-        this.energy -= 1;
+        this.energy -= SET_NAME_ENERGY;
     }
-    
+       
     /**
      * Lets the Rover take a picture
      */
     public void takePic()
     {
-        if (numPics < 5){
-            System.out.println(name + " took a picture at [" + x +"," + y + "] facing" + getDirectionName() + ".");
-            this.numPics += 1;
-            this.energy -= 8;
+        if (numPics < MEMORY){
+            System.out.println(name + " took a picture at [" + x +"," + y + "] facing " + getDirectionName() + ".");
+            this.numPics += TAKE_PICTURE;
+            this.energy -= TAKE_PICTURE_ENERGY;
         }
         else{
             System.out.println("Memory full, needs to back up to NASA before taking more!");
@@ -104,19 +116,24 @@ public class Rover
        if(numPics >= 1){
            System.out.println("Sending " + numPics + " pictures to NASA HQ ......");
            System.out.println("Recieved");
-           this.numPics = 0;
-           this.energy -= 5;
+           this.numPics = EMPTY_MEMORY;
+           this.energy -= TRANSMIT_PIC_ENERGY;
         }
        else{
            System.out.println("No pictures to transmit.");
-           this.energy -= 1;
+           this.energy -= NO_TRANSMIT_PIC_ENERGY;
        }
+    }
+    
+    public void checkMemory()
+    {
+        System.out.println("Pictures: " + numPics + " of " + MEMORY);
     }
     
     /**
      * Returns the energy of the Rover
      */
-    public void energyCheck()
+    public void checkEnergy()
     {
        System.out.println("Energy: " + energy);
     }
@@ -124,15 +141,16 @@ public class Rover
     /**
      * Charges the Rover so it can function again
      */
-    public void chargeRover()
+    public void chargeRover(int n)
     {
         System.out.println("Rover beginning to Charge!");
-        this.energy = MAX_CHARGE;
+        this.energy = Math.min(this.energy + n, MAX_CHARGE);
         System.out.println("CHARGED!");
     }
     
     /**
      * Allows the Rover to move
+     * @param n = How many units it moves in said direction.
      */
     public void move(int n)
     {
@@ -171,7 +189,7 @@ public class Rover
             y += n;            
             x -= n;
         }
-        this.energy -= (2*n);
+        this.energy -= (MOVE_ENERGY * n);
         if(n == 1)
         {
             System.out.println(name + " moved " + getDirectionName() + " by " + n + " unit.");
@@ -181,6 +199,10 @@ public class Rover
         }
     }
     
+    /**
+     * Calls rotateLeft() or rotateRight() depending on if the int is positive or negative
+     * @Param n = How many units left or right the rover will turn
+     */
     public void rotate(int n)
     {
         if(n < 0){
@@ -190,12 +212,13 @@ public class Rover
             rotateRight(n);
         }
         else{
-            System.out.println("You cant rotate 0 Units.");
+            System.out.println("You can not rotate 0 Units.");
         }
     }
     
     /**
      * Rotates the Rover Left by n units
+     * @param n = Takes the n int from the function rotate() and uses it in the function
      */
     private void rotateLeft(int n) 
     {
@@ -205,12 +228,13 @@ public class Rover
         {
             dir = 8 + n;
         }
-        this.energy -= 2;
+        this.energy -= ROTATE_ENERGY;
         System.out.println(name + " turned to the left");        
     }
     
     /**
      * Rotates the Rover right by n units
+     * @param n = Takes the n int from the function rotate() and uses it in the function
      */
     private void rotateRight(int n)
     {
@@ -220,7 +244,7 @@ public class Rover
         {
             dir = (7 + n) % 8;
         }
-        this.energy -= 2;
+        this.energy -= ROTATE_ENERGY;
         System.out.println(name + " turned to the right");        
     }
     
@@ -254,6 +278,8 @@ public class Rover
     
     /**
      * Teleports Rover to a certain set of coordinates
+     * @param x = x-coordinate rover is being sent to
+     * @param y = y-coordinate rover is being sent to
      */
     public void teleport(int x, int y)
     {
@@ -261,9 +287,9 @@ public class Rover
         this.x = x;
         this.y = y;        
         System.out.println("Arrived at (" + x + "," + y + ")");
-        this.energy -= 25;
+        this.energy -= TELEPORT_ENERGY;
     }
-    
+        
     /**
      * One Rover kills another Rover then calls oof method
      */

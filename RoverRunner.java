@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class RoverRunner here.
+ * Use with the Simple Scanner to guide rovers with Functions from Rover Class.
  * 
  * @author Sean Donlin 
- * @version 9/21/17
+ * @version 10/22/17
  */
 public class RoverRunner
 {
@@ -49,12 +49,13 @@ public class RoverRunner
                 System.out.println("[2]Rotate");
                 System.out.println("[3]Take Picture");
                 System.out.println("[4]Transmit Picture");
-                System.out.println("[5]Check Energy");
-                System.out.println("[6]Charge Rover");
-                System.out.println("[7]Kill");
-                System.out.println("[8]Teleport");
-                System.out.println("[9]Move to");
-                System.out.println("[10]Quit");
+                System.out.println("[5]Check Memory");
+                System.out.println("[6]Check Energy");
+                System.out.println("[7]Charge Rover");
+                System.out.println("[8]Kill");
+                System.out.println("[9]Teleport");
+                System.out.println("[10]Move to(Not Working ATM)");
+                System.out.println("[11]Quit");
                 String command = input.readString();
                 
                 if (command.equals("move")) {
@@ -73,11 +74,16 @@ public class RoverRunner
                 else if (command.equals("transmit picture")) {
                     actor.transmitPictures();
                 }
+                else if (command.equals("check memory")) {
+                    actor.checkMemory();
+                }
                 else if (command.equals("check energy")) {
-                    actor.energyCheck();
+                    actor.checkEnergy();
                 }
                 else if (command.equals("charge rover")) {
-                    actor.chargeRover();
+                    System.out.print("Enter amount to charge: ");
+                    int n = input.readInt();
+                    actor.chargeRover(n);
                 }
                 else if (command.equals("kill")) {
                     System.out.print("Enter the name the target rover: ");
