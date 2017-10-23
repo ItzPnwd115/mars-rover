@@ -113,7 +113,7 @@ public class Rover
      */
     public void transmitPictures()
     {
-       if(numPics >= 1){
+       if(numPics > 0){
            System.out.println("Sending " + numPics + " pictures to NASA HQ ......");
            System.out.println("Recieved");
            this.numPics = EMPTY_MEMORY;
@@ -150,75 +150,85 @@ public class Rover
     
     /**
      * Allows the Rover to move
-     * @param n = How many units it moves in said direction.
+     * @param n How many units it moves in said direction.
      */
     public void move(int n)
     {
-        if (dir == 0)
-        {
-            y += n;
-        }
-        else if (dir == 1)
-        {
-            y += n;
-            x += n;
-        }
-        else if (dir == 2)
-        {
-            x += n;
-        }
-        else if (dir == 3)
-        {
-            y -= n;
-            y += n;
-        }
-        else if (dir == 4)
-        {
-            y -= n;
-        }
-        else if (dir == 5)
-        {
-            y -= n;
-            x -= n;
-        }
-        else if(dir == 6){
-            x -= n;
-        }
-        else if (dir == 7)
-        {
-            y += n;            
-            x -= n;
-        }
-        this.energy -= (MOVE_ENERGY * n);
-        if(n == 1)
-        {
-            System.out.println(name + " moved " + getDirectionName() + " by " + n + " unit.");
+        if (this.energy >= MOVE_ENERGY) {
+            if (dir == 0)
+            {
+                y += n;
+            }
+            else if (dir == 1)
+            {
+                y += n;
+                x += n;
+            }
+            else if (dir == 2)
+            {
+                x += n;
+            }
+            else if (dir == 3)
+            {
+                y -= n;
+                y += n;
+            }
+            else if (dir == 4)
+            {
+                y -= n;
+            }
+            else if (dir == 5)
+            {
+                y -= n;
+                x -= n;
+            }
+            else if(dir == 6){
+                x -= n;
+            }
+            else if (dir == 7)
+            {
+                y += n;            
+                x -= n;
+            }
+            this.energy -= (MOVE_ENERGY * n);
+            if(n == 1)
+            {
+                System.out.println(name + " moved " + getDirectionName() + " by " + n + " unit.");
+            }
+            else{
+                System.out.println(name + " moved " + getDirectionName() + " by " + n + " units.");
+            }
         }
         else{
-            System.out.println(name + " moved " + getDirectionName() + " by " + n + " units.");
+            System.out.println("Your rover is at low battery, you need to charge your rover before making another move.");
         }
     }
     
     /**
      * Calls rotateLeft() or rotateRight() depending on if the int is positive or negative
-     * @Param n = How many units left or right the rover will turn
+     * @param n = How many units left or right the rover will turn
      */
     public void rotate(int n)
     {
-        if(n < 0){
-            rotateLeft(n);
-        }
-        else if(n > 0){
-            rotateRight(n);
+        if(this.energy > ROTATE_ENERGY){
+            if(n < 0){
+                rotateLeft(n);
+            }
+            else if(n > 0){
+                rotateRight(n);
+            }
+            else{
+                System.out.println("You can not rotate 0 Units.");
+            }
         }
         else{
-            System.out.println("You can not rotate 0 Units.");
+            System.out.println("Your rover is at low battery, you need to charge your rover before you can rotate.");
         }
     }
     
     /**
      * Rotates the Rover Left by n units
-     * @param n = Takes the n int from the function rotate() and uses it in the function
+     * @param nTakes the n int from the function rotate() and uses it in the function
      */
     private void rotateLeft(int n) 
     {
@@ -234,7 +244,7 @@ public class Rover
     
     /**
      * Rotates the Rover right by n units
-     * @param n = Takes the n int from the function rotate() and uses it in the function
+     * @param n Takes the n int from the function rotate() and uses it in the function
      */
     private void rotateRight(int n)
     {
@@ -278,16 +288,21 @@ public class Rover
     
     /**
      * Teleports Rover to a certain set of coordinates
-     * @param x = x-coordinate rover is being sent to
-     * @param y = y-coordinate rover is being sent to
+     * @param x x-coordinate rover is being sent to
+     * @param y y-coordinate rover is being sent to
      */
     public void teleport(int x, int y)
     {
-        System.out.println("Teleporting from [" + this.x + "," + this.y + "] to [" + x + "," + y + "]");
-        this.x = x;
-        this.y = y;        
-        System.out.println("Arrived at (" + x + "," + y + ")");
-        this.energy -= TELEPORT_ENERGY;
+        if(this.energy > TELEPORT_ENERGY){
+            System.out.println("Teleporting from [" + this.x + "," + this.y + "] to [" + x + "," + y + "]");
+            this.x = x;
+            this.y = y;        
+            System.out.println("Arrived at (" + x + "," + y + ")");
+            this.energy -= TELEPORT_ENERGY;
+        }
+        else{
+            System.out.println("Your rover is at low battery, you need to charge if you want to teleport.");
+        }
     }
         
     /**
@@ -300,11 +315,17 @@ public class Rover
     }
     
     // accessor methods - just for looking, state doesn't change
+    /**
+     * @return Name of Rover
+     */
     public String getName() {
         return name;
     }
     
     // Prints information about Rover
+    /**
+     * @return  Name, X & Y Coordinates, Direction, and if its alive
+     */
     public String toString() {
         return "Rover[name=" + name + ", " +
                "x=" + x + ", " +
