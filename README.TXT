@@ -11,3 +11,11 @@ HOW TO START THIS PROJECT:
 AUTHORS: Sean Donlin
 USER INSTRUCTIONS:
 Wite functions in the Rover class then add said function to the Rover Runner class and you will be able to call it in the JRE.
+
+Notes from the Author:
+## Will be adding ideas I think of listed below
+** Hover/Fly mode
+** Surface recogniton
+** Radiation Detector
+** "Map of Mars"~will include areas and a way for the rover to print pictures
+** Pictures will print a pixel based picture
