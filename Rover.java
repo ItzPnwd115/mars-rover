@@ -8,8 +8,9 @@ public class Rover
 {
     // fields
     private String name;
-    private int x;
-    private int y;
+    private int x;//x coordinate
+    private int y;//y coordinate
+    private int z;//z = hight coordinate
     private int dir; // 0=North, 1=North-East, 2=East, 3=South-East, 4=South, 5=South-West, 6=West, 7=South-West
     private int numPics;
     private boolean isAlive;
@@ -34,6 +35,7 @@ public class Rover
         this.name = name;
         this.x = 0;
         this.y = 0;
+        this.z = 0;
         this.dir = 0;
         this.numPics = 0;
         this.isAlive= true;
@@ -48,6 +50,14 @@ public class Rover
         private void oof() {
         isAlive = false;
         System.out.println(name + " goes 'OOOOF!' and dies.");
+    }
+    
+    public void isFlying()
+    {
+        if(z > 0)
+        {
+            System.out.println(name + " is flying " + z + " meters in the air.");
+        }
     }
     
     /**
