@@ -14,6 +14,7 @@ public class Rover
     private int dir; // 0=North, 1=North-East, 2=East, 3=South-East, 4=South, 5=South-West, 6=West, 7=South-West
     private int numPics;
     private boolean isAlive;
+    private boolean isFlying;
     private int energy;
         
     public static final int MAX_CHARGE = 100;
@@ -39,6 +40,7 @@ public class Rover
         this.dir = 0;
         this.numPics = 0;
         this.isAlive= true;
+        this.isFlying = false;
         this.energy = 100;
     }
     
@@ -52,14 +54,15 @@ public class Rover
         System.out.println(name + " goes 'OOOOF!' and dies.");
     }
     
-    public void isFlying()
+    /**
+     * Contols if rover is flying or not.
+     * */
+     private void flight()
     {
-        if(z > 0)
-        {
-            System.out.println(name + " is flying " + z + " meters in the air.");
-        }
+        isFlying = true;
+        
     }
-    
+   
     /**
      * Changes all direction numbers to directions
      * @return Directions instead of numbers.
@@ -156,6 +159,21 @@ public class Rover
         System.out.println("Rover beginning to Charge!");
         this.energy = Math.min(this.energy + n, MAX_CHARGE);
         System.out.println("CHARGED!");
+    }
+    
+    public void fly()
+    {
+        if(this.z == 0)
+        {
+            z = 1;
+        }
+        flight();
+    }
+    
+    public void changeElevation(int z)
+    {
+        int h = Math.abs(this.z-z);
+        this.z += h;        
     }
     
     /**
@@ -340,6 +358,7 @@ public class Rover
         return "Rover[name=" + name + ", " +
                "x=" + x + ", " +
                "y=" + y + ", " + 
+               "z=" + z + ", " +
                "dir=" + getDirectionName() + ", " + 
                "isAlive=" + isAlive + "]";
     }

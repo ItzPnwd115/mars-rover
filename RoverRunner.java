@@ -55,7 +55,10 @@ public class RoverRunner
                 System.out.println("[8]Kill");
                 System.out.println("[9]Teleport");
                 System.out.println("[10]Move to(Not Working ATM)");
-                System.out.println("[11]Quit");
+                System.out.println("[11]Enable fly mode");
+                System.out.println("[12]Change Elevation");
+                System.out.println("[13]Go to flight desk");
+                System.out.println("[14]Quit");
                 String command = input.readString();
                 
                 if (command.equals("move")) {
@@ -112,6 +115,14 @@ public class RoverRunner
                     System.out.print("Enter y Coordinate: ");
                     int y = input.readInt();
                     actor.moveTo(x,y);
+                }
+                else if (command.equals("enable fly mode")) {
+                    actor.fly();                    
+                }
+                else if (command.equals("change elevation")) {
+                    System.out.print("Enter elevation to go to: ");
+                    int z = input.readInt();
+                    actor.changeElevation(z);                    
                 }
                 else {
                     System.out.println("Error: Invalid command.");
